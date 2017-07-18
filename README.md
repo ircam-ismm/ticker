@@ -1,18 +1,18 @@
-# @ircam/ticker
+# @ircam/parameters
+
 
 > Execute a given callback at periodic interval, trying to minimize drift and jitter.
 
-## Install
+## Install (@todo)
 
 ```
 npm install [--save] @ircam/ticker
 ```
 
-## Usage
+## Usage (@todo)
 
 ```js
 import ticker from '@ircam/ticker'
-
 // @todo
 ```
 
@@ -21,9 +21,9 @@ import ticker from '@ircam/ticker'
 <a name="Ticker"></a>
 
 ## Ticker
-Precise timer (based on `setTimeout`) that monitor and adapt itself to stay
-close from the given therical period. In particular, try to minimize the
-drift caused by the use of a raw `setTimeout`.
+Precise periodic timer (based on `setTimeout`) that monitor and adapt itself
+to stay close to the given therical period. In particular, try to minimize
+the drift caused by the use of a raw `setTimeout`.
 Observed average jitter is around +/- 2ms.
 
 **Kind**: global class  
