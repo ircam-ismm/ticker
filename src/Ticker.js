@@ -20,18 +20,16 @@
  *  the overall jitter.
  */
 class Ticker {
-  constructor(period, callback, {
-    errorThreshold = 0.2,
-  } = {}) {
+  constructor(period, callback, { errorThreshold = 0.4 } = {}) {
     period = Math.floor(period);
+
     this.logicalPeriod = period;
     this.computedPeriod = period;
     this.callback = callback;
-
-    this._tick = this._tick.bind(this);
+    this.errorThreshold = errorThreshold;
     this.isRunning = false;
 
-    this.errorThreshold = errorThreshold;
+    this._tick = this._tick.bind(this);
   }
 
   /**
