@@ -31,7 +31,6 @@ class Ticker {
     this._tick = this._tick.bind(this);
     this.isRunning = false;
 
-    console.log(errorThreshold);
     this.errorThreshold = errorThreshold;
   }
 
