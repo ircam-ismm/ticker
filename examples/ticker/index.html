@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+  <head>
+      <meta charset="utf-8" />
+      <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1">
+      <title>Ticker</title>
+      <link rel="stylesheet" href="./css/styles.css" />
+  </head>
+  <body>
+    <h1>Ticker</h1>
+
+    <div id="controls"></div>
+
+    <p>
+      Error according to the logical time. Y axis range between -4 and 4 ms.
+      <ul>
+        <li>blue line: raw error</li>
+        <li>orange line: running mean error on 20 error samples</li>
+      </ul>
+    </p>
+    <div id="timeout"></div>
+
+    <script src="./bundle.js"></script>
+  </body>
+</html>
