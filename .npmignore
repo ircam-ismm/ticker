@@ -1,6 +1,6 @@
+bin
+examples
+src
 tmpl
 tests
-examples
-bin
-src
 .babelrc
