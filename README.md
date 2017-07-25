@@ -1,26 +1,19 @@
-# @ircam/ticker
+# @ircam/parameters
 
 
 > Execute a given callback at periodic interval, trying to minimize drift and jitter.
 
-## Install
+## Install (@todo)
 
 ```
 npm install [--save] @ircam/ticker
 ```
 
-## Usage
+## Usage (@todo)
 
 ```js
-import Ticker from '@ircam/ticker'
-
-const ticker = new Ticker(50, (logicalTime, currentTime, error) => {
-  console.log(logicalTime, currentTime, error);
-});
-
-ticker.start();
-
-setTimeout(() => ticker.stop(), 2000);
+import ticker from '@ircam/ticker'
+// @todo
 ```
 
 # API
