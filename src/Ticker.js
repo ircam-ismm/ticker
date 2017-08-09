@@ -1,3 +1,29 @@
+// http://stackoverflow.com/questions/17575790/environment-detection-node-js-or-browser
+const isNode = new Function('try { return this === global; } catch(e) { return false }');
+
+/**
+ * Create a function that returns time in milliseconds according to the current
+ * environnement (node or browser).
+ * If running in node the time rely on `process.hrtime`, while if in the browser
+ * it is provided by the `currentTime` of an `AudioContext`, this context can
+ * optionnaly be provided to keep time consistency between several `EventIn`
+ * nodes.
+ *
+ * @param {AudioContext} [audioContext=null] - Optionnal audio context.
+ * @return {Function}
+ * @private
+ */
+function getTimeFunction(audioContext = null) {
+  if (isNode()) {
+    return () => {
+      const t = process.hrtime();
+      return (t[0] + t[1] * 1e-9) * 1e3;
+    }
+  } else {
+    return () => performance.now();
+  }
+}
+
 /**
  * @callback TickerCallback
  * @param {Number} logicalTime - logical time since `start` in ms
@@ -28,6 +54,7 @@ class Ticker {
     this.callback = callback;
     this.errorThreshold = errorThreshold;
     this.isRunning = false;
+    this.getTime = getTimeFunction();
 
     this._tick = this._tick.bind(this);
   }
@@ -56,7 +83,7 @@ class Ticker {
    */
   start() {
     if (!this.isRunning) {
-      this.startTime = performance.now();
+      this.startTime = this.getTime();
       this.logicalTime = 0;
 
       this._tick(); // run now
@@ -75,7 +102,7 @@ class Ticker {
 
   /** @private */
   _tick() {
-    const now = performance.now();
+    const now = this.getTime();
     const time = now - this.startTime;
     const error = time - this.logicalTime;
 
