@@ -14,7 +14,8 @@ npm install [--save] @ircam/ticker
 ```js
 import Ticker from '@ircam/ticker'
 
-const ticker = new Ticker(50, (logicalTime, currentTime, error) => {
+const period = 50; // in milliseconds
+const ticker = new Ticker(period, (logicalTime, currentTime, error) => {
   console.log(logicalTime, currentTime, error);
 });
 
