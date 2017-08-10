@@ -1,4 +1,4 @@
-# @ircam/ticker
+# @ircam/parameters
 
 
 > Execute a given callback at periodic interval, trying to minimize drift and jitter.
