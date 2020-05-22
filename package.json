@@ -1,6 +1,6 @@
 {
   "name": "@ircam/ticker",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "description": "Execute a given callback at periodic interval, trying to minimize drift and jitter",
   "main": "dist/Ticker.js",
   "standalone": "Ticker",
