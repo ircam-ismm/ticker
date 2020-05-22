@@ -1,26 +1,24 @@
-// http://stackoverflow.com/questions/17575790/environment-detection-node-js-or-browser
-const isNode = new Function('try { return this === global; } catch(e) { return false }');
-
 /**
  * Create a function that returns time in milliseconds according to the current
- * environnement (node or browser).
+ * environment (node or browser).
  * If running in node the time rely on `process.hrtime`, while if in the browser
- * it is provided by the `currentTime` of an `AudioContext`, this context can
- * optionnaly be provided to keep time consistency between several `EventIn`
- * nodes.
+ * it is provided by the `performance.now`. In last resort, `Date.now()` is used.
  *
- * @param {AudioContext} [audioContext=null] - Optionnal audio context.
  * @return {Function}
  * @private
  */
 function getTimeFunction(audioContext = null) {
-  if (isNode()) {
+  if (typeof process !== 'undefined' && typeof process.hrtime === 'function') {
     return () => {
       const t = process.hrtime();
       return (t[0] + t[1] * 1e-9) * 1e3;
     }
-  } else {
+  } else if(typeof self !== 'undefined'
+            && typeof self.performance !== 'undefined'
+            && typeof self.performance.now === 'function') {
     return () => performance.now();
+  } else {
+    return () => Date.now();
   }
 }
 
